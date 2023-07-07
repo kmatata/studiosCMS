@@ -1,0 +1,59 @@
+{% extends 'signup_base.html' %}
+
+{% block content %}
+<div class="relative flex md:flex-row-reverse min-h-screen ring-8 ring-white ring-offset-8 ring-offset-white rounded-3xl overflow-y-hidden">                
+    <div id="logo" class="rounded-md z-30 align-top text-3xl absolute md:w-1/6 w-2/3 flex justify-center right-14 top-1 md:right-32 md:top-10 min-h-min bg-base-200">            
+        <p class="pb-1 tracking-widest text-white">mySiB@owner</p>            
+    </div>
+    <section id="login-form" class="z-10 self-center rounded-3xl card shadow-2xl md:card-compact bg-gray-700/40 md:w-1/3 w-full md:h-2/3">                                    
+        
+        <div class="card-body">
+            <form method="post" class="space-y-2 md:p-5">
+                {% csrf_token %}
+                <div class="form-control">
+                    <label class="label text-xs text-white">
+                       {{ form.firstName }} 
+                    </label>                                                    
+                </div>                    
+                <div class="form-control">
+                    <label class="label text-xs text-white">
+                        {{ form.lastName }}
+                    </label>                                                                            
+                </div>
+                <div class="form-control">
+                    <label class="label text-xs text-white">
+                        {{ form.email }}
+                    </label>                                                                            
+                </div>
+                <div class="form-control">
+                    <label class="label text-xs text-white">
+                        {{ form.password }}
+                    </label>                                                                            
+                </div>
+                <div class="form-control">
+                    <label class="label text-xs text-white">
+                        {{ form.password2 }}
+                    </label>                                                                            
+                </div>
+                <label class="label">
+                    <a href="{% url 'authy:login' %}" class="label-text-alt link link-hover">Alread have account? Login</a>
+                </label>
+                <div class="form-control mt-6 ">                                                
+                    <button class="text-black hover:text-white tracking-widest btn bg-white btn-xs sm:btn-sm shadow-2xl shadow-black rounded-full">sign up</button>
+                </div>
+            </form>
+          </div>
+    </section>
+    <aside id="hero-wlcm-mssg" class="hidden md:block md:w-2/3">
+        <div class="hero min-h-screen rounded-3xl"  style="background-image: url(/static/images/shinichi-kotoku-1hsME52r6Rg-unsplash.jpg);">
+            <div class="hero-overlay bg-opacity-60 rounded-3xl"></div>
+            <div class="hero-content text-center text-neutral-content">
+              <div class="max-w-md">
+                <h1 class="mb-5 text-5xl font-bold">Get all your SIB account needs</h1>
+                <p class="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>                
+              </div>
+            </div>
+          </div>
+    </aside>
+</div>
+{% endblock %}

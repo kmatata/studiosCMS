@@ -1,0 +1,74 @@
+<html>
+{% load humanize %}
+<body>
+  <h1>SIB studios</h1>
+  <p>
+    Invoice no. {{ paid.id }}<br>
+    <span class="secondary">
+      {{ paid.created|date:"M d, Y" }}
+    </span>
+  </p>
+  <h3>Bill to</h3>
+  <p>
+    {{ paid.tenant.renter.first_name }} {{ paid.tenant.renter.last_name }}<br>
+    {{ paid.tenant.renter.email }}<br>    
+  </p>
+  <h3>Items</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="row{% cycle "1" "2" %}">
+          <td>Flat No {{ paid.flat }}</td>
+          <td class="num">Rental Fee: KES {{ paid.flat.rentalFee|intcomma }}</td>
+          <td class="num">x1</td>
+          <td class="num">KES {{ paid.flat.rentalFee|intcomma }}</td>
+        </tr>
+        
+        <tr class="row{% cycle '1' '2' %}">
+            <td>Deposit {{ paid.flat.flat_no }}</td>
+            <td class="num">Deposit Fee: KES {{ paid.flat.threeMonthDeposit|intcomma }}</td>
+            <td class="num">x1</td>
+            <td class="num">KES {{ paid.flat.threeMonthDeposit|intcomma }}</td>
+        </tr>
+
+        <tr class="row{% cycle '1' '2' %}">
+            <td>Water {{ paid.flat.flat_no }}</td>
+            <td class="num">Water Cost: KES {{ paid.flat.waterUnitCost }} /litre</td>
+            <td class="num">{{ paid.water.quantity }}</td>
+            <td class="num">KES {{ paid.water.get_cost|intcomma }}</td>
+        </tr>
+
+        <tr class="row{% cycle '1' '2' %}">
+            <td>Sewage {{ paid.flat.flat_no }}</td>
+            <td class="num">Sewage Cost: KES {{ paid.flat.sewageUnitCost|intcomma }} /litre</td>
+            <td class="num">{{ paid.sewage.quantity }}</td>
+            <td class="num">KES {{ paid.sewage.get_cost|intcomma }}</td>
+        </tr>
+
+        <tr class="row{% cycle '1' '2' %}">
+            <td>Service charge {{ paid.flat.flat_no }}</td>
+            <td class="num">KES {{ paid.flat.maintenaceFee|intcomma }}</td>
+            <td class="num">x1</td>
+            <td class="num">KES {{ paid.flat.maintenaceFee|intcomma }}</td>
+        </tr>
+
+      <tr class="total">
+        <td colspan="3">Total</td>
+        <td class="num">KES {{ paid.get_total_cost|intcomma}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <span class="{% if paid.payment_status == 'complete' %}paid{% else %}pending{% endif %}">
+    {% if paid.payment_status == 'complete' %}Paid{% else %}Pending payment{% endif %}
+  </span>
+</body>
+</html>

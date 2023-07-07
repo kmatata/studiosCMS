@@ -1,0 +1,50 @@
+<div x-ref="finalInvoice" class="z-10 hidden absolute left-0 top-72 h-screen card card-compact w-full z-40 bg-white">              
+    <label @click="$refs.finalInvoice.classList.add('hidden')" 
+      class="z-30 btn btn-xs btn-circle bg-white absolute right-4 top-2">X</label>
+    <div class="card-body w-full flex flex-col flex-wrap">
+      <h2 class="text-xl">Final Invoice for {{ flat.tenant }} @Flat No{{ flat.flat }}</h2>
+      
+      <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-full p-2 md:p-0 my-[5px]"></div>      
+      
+        <div id="rental" class=" w-full p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Rental Fee</span>
+          </label> 
+          <input disabled x-mask:dynamic="$money($input)" x-model="flat_details.rentalFee" type="text" placeholder="Type here" class="input input-sm input-bordered w-full" />                                                                     
+        </div>         
+        <div id="service" class=" w-full p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Service</span>
+          </label> 
+            <input disabled x-mask:dynamic="$money($input)" x-model="flat_details.serviceFee" type="text" placeholder="Type here" class="input input-sm input-bordered w-full" />                                                                     
+        </div>         
+        <div id="water_bill_total" class="w-1/2 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Water Total</span>
+          </label> 
+            <input disabled x-mask:dynamic="$money($input)" x-model="flat_details.water_bill_total" type="text" 
+            placeholder="Type here" class="input input-sm input-bordered w-full" />                                                                     
+        </div>                         
+        <div id="sewage" class="w-1/2 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Sewage Total</span>
+          </label> 
+            <input disabled x-mask:dynamic="$money($input)" x-model="flat_details.sewage_bill_total" type="text" placeholder="Type here" class="input input-sm input-bordered w-full" />                                                                     
+        </div>
+        <div id="monthlyTotal" class="w-full p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Monthly Total(kes)</span>
+          </label> 
+            <input disabled x-mask:dynamic="$money($input)" 
+            x-model="flat_details.monthly_total" type="text" placeholder="Type here" 
+            class="input input-sm text-xl input-bordered w-full"
+             />                                                                     
+        </div>                   
+        <div class=" mt-6 w-full">                  
+            <button @click.prevent="sendInvoice($data)" type="submit" class="w-full text-black hover:text-white tracking-widest btn bg-white btn-xs sm:btn-sm shadow-2xl shadow-black rounded-full">
+              update
+            </button>                    
+          </div>                     
+             
+    </div>
+  </div>

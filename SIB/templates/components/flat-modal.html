@@ -1,0 +1,47 @@
+<div class="z-10 card card-compact flex flex-col z-20">              
+    
+    <div class="card-body w-full">
+      <h2 class="text-xl">Update Flat No{{ flat.flat }}</h2>
+      
+      <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-full p-2 md:p-0 my-[5px]"></div>      
+      <form action="" class="md:p-5 flex w-full flex-wrap">                
+        <div id="rental" class="form-control w-1/2 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Rental Fee</span>
+          </label> 
+          <input x-mask:dynamic="$money($input)" x-model="flat_details.rentalFee" type="text" placeholder="Type here" class="input input-sm input-bordered w-full max-w-xs" />                                                                     
+        </div> 
+        <div id="deposit" class="form-control w-1/2 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Deposit</span>
+          </label> 
+            <input x-mask:dynamic="$money($input)" x-model="flat_details.deposit" type="text" placeholder="Type here" class="input input-sm input-bordered w-full max-w-xs" />                                                                     
+        </div>
+        <div id="service" class="form-control w-1/3 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Service fee</span>
+          </label> 
+            <input x-mask:dynamic="$money($input)" x-model="flat_details.serviceFee" type="text" placeholder="Type here" class="input input-sm input-bordered w-full max-w-xs" />                                                                     
+        </div> 
+        <div id="water" class="form-control w-1/3 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Water</span>
+          </label> 
+            <input x-mask:dynamic="$money($input)" x-model="flat_details.water_unit_cost" type="text" placeholder="Type here" class="input input-sm input-bordered w-full max-w-xs" />                                                                     
+        </div>
+        <div id="sewage" class="form-control w-1/3 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Sewage</span>
+          </label> 
+            <input x-mask:dynamic="$money($input)" x-model="flat_details.sewage_unit_cost" type="text" placeholder="Type here" class="input input-sm input-bordered w-full max-w-xs" />                                                                     
+        </div>                   
+        <div class="form-control mt-6 w-full">                  
+          <button @click.prevent="updateFlat($data)" type="submit" class="text-black hover:text-white tracking-widest btn bg-white btn-xs sm:btn-sm shadow-2xl shadow-black rounded-full">
+            update
+          </button>
+      </div>              
+      </form>
+        
+      
+    </div>
+  </div>

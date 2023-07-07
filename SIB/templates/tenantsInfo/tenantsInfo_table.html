@@ -1,0 +1,39 @@
+{% extends "tenantsInfo/base.html" %}
+
+{% load render_table from django_tables2 %}
+{% load export_url from django_tables2 %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+
+{% block table_main %}
+
+<button class="position-relative btn" type="submit">
+    <h1 style="cursor: not-allowed;" class="font-family-karla">Renter Info table</h1>
+    <a href="{% export_url 'xlsx' %}">
+        <span style="color: black; border-color: blue;" class="border border-3 p-1 rounded position-absolute top-50 end-100 -mx-5 translate-middle-y material-symbols-outlined md-36">download</span>            
+    </a>
+</button> 
+
+{# Search form #}
+    <form hx-get="{% url 'authy:tenant_table' %}" 
+          hx-target="div#table-container" 
+          hx-swap="outerHTML" 
+          hx-indicator=".progress" 
+          class="form-inline">
+          <div class="position-relative">
+            {% crispy filter.form %} 
+            <button class="position-absolute top-50 end-0 translate-middle-y btn" type="submit">
+                <span style="color: black;" class="material-symbols-outlined md-36 ">query_stats</span>            
+            </button>           
+          </div>          
+    </form>
+
+    {# Progress indicator #}
+    <div class="progress">
+        <div class="indeterminate"></div>
+    </div>   
+    {# renter_info_export payment_log_export#}
+{% render_table table %}
+{% endblock %}

@@ -1,0 +1,97 @@
+
+    <div class="flex flex-col flex-wrap ">
+        <figure class="bg-black w-full flex shadow-3xl rounded-b-lg justify-end">
+            <img class="w-1/3 rounded-br-3xl h-40" src="/static/images/high_rise2.png" alt="">
+        </figure>
+        <header class="flex h-12">
+            <div class="w-screen h-12 absolute z-40 top-8 left-20">
+                <div id="logo" class="rounded-md text-3xl text-white md:w-1/5 w-1/3 flex p-5 justify-center bg-base-200">            
+                    <span class="items-around font-extrabold tracking-widest">SIB studios</span>            
+                </div>                                                     
+            </div>
+        </header>
+        <div class="absolute right-12 top-72 md:top-60 border-4 rounded-md bg-white flex flex-row p-5 space-x-2">
+            <span style="color: rgb(4, 255, 142);" class="material-symbols-outlined md-36">preliminary</span>
+            <p style="color: rgb(0, 135, 74);" class="tracking-widest p-1">Paid</p>
+        </div>
+        <h2 class="text-xl  p-5 font-extrabold text-white tracking-widest">Last Invoice for: {{ myFlat.tenant }} <br> ID No: {{ myFlat.tenant.natId }} <br> Invoice No: {{ myFlat.id }}</h2>
+        <div class="w-full bg-white flex mt-10 p-5 flex-wrap pb-10 space-y-5 md:space-y-0">                
+        {# flat costs and water #}
+        <div class="flex flex-col w-full md:w-1/2">
+            <h2 class="text-xl font-extrabold text-black tracking-widest">{{ myFlat.tenant }} @Flat No {{ myFlat.flat }}</h2>
+            <div style="border-bottom-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-full p-2 md:p-0  my-[5px]"></div>      
+            <div class="flex pl-5 flex-col space-y-8 text-black tracking-widest py-5">
+                <div class="flex flex-col">
+                    <h2 class="text-xl">Rental Fee</h2>
+                    <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-1/3 p-2 md:p-0  my-[5px]"></div>      
+                    <p x-text="flat_details.rentalFee" class="text-xl"></p>                
+                </div>
+                <div class="flex flex-col">
+                    <h2 class="text-xl">Water/unit</h2>
+                    <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-1/3 p-2 md:p-0  my-[5px]"></div>      
+                    <p x-text="flat_details.water_unit_cost" class="pl-5"></p>                        
+                </div>
+                <div class="flex flex-col">
+                    <h2 class="text-xl">Sewage/unit</h2>
+                    <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-1/3 p-2 md:p-0  my-[5px]"></div>      
+                    <p x-text="flat_details.sewage_unit_cost" class="pl-5"></p>                        
+                </div>                    
+            </div>
+            
+        </div>
+        {# flat costs and water #}
+        
+        <div class="flex flex-col w-full md:w-1/2">
+            <div style="border-left-width: 2px;border-color: rgb(0, 0, 0); border-radius: 0px;" class="absolute mt-10 ml-5 hidden md:block h-96"></div>
+            <h2 class="text-xl font-extrabold text-black tracking-widest md:ml-10">Monthly total fee:</h2>
+            <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-full p-2 md:p-0 my-[5px]"></div>      
+            <div class="flex ml-10 flex-col space-y-8 text-black">
+                <div class="flex justify-between">                        
+                    <p class="text-xl ">
+                        Rental Fee: 
+                    </p>
+                    <p class=" tracking-widest italic font-extrabold">KES <strong x-text="flat_details.rentalFee"></strong></p>
+                </div>
+                <div class="flex justify-between">                        
+                    <p class="text-xl">
+                        Deposit :
+                    </p>
+                    <p class="italic font-extrabold">
+                        KES 0.00  
+                    </p>
+                </div>
+                <div class="flex text-sm justify-between">                        
+                    <p class="">
+                        Water Total: 
+                        <strong class="text-sm" x-text="flat_details.water_qtty"></strong> litres                        
+                    </p>
+                    <p class="tracking-widest font-extrabold italic">KES 
+                        <strong x-text="flat_details.water_bill_total"></strong>
+                    </p>                        
+                </div>
+                <div class="flex text-sm justify-between">                        
+                    <p class="">
+                        Sewage Cost: 
+                        <strong class="text-sm" x-text="flat_details.sewage_qtty"></strong> litres                         
+                    </p>
+                    <p class="tracking-widest font-extrabold italic">KES 
+                        <strong x-text="flat_details.sewage_bill_total"></strong>
+                    </p>                                                                  
+                </div> 
+                <div class="flex justify-between">                        
+                    <p class="tracking-widest">
+                        Service Cost:
+                    </p> 
+                    <p class="tracking-widest font-extrabold italic text-sm">KES <strong x-text="flat_details.serviceFee"></strong></p>                                               
+                </div> 
+                <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-full p-2 md:p-0  my-[5px]"></div>      
+                <div class="flex justify-between">                        
+                    <p class="text-xl tracking-widest">
+                        Total Payable:
+                    </p> 
+                    <p class="tracking-widest font-extrabold italic">KES <strong x-text="flat_details.monthly_total"></strong></p>                                               
+                </div>                   
+            </div>
+        </div>
+        </div>
+    </div>

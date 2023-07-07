@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div id="allflats" class="relative w-full h-full flex flex-wrap space-y-4 md:space-y-2">
+  {% if current_user.is_staff %}
+    {# admin view #}
+    {% include 'main-html/components/admin_view.html' %}
+    {# admin view #}
+  {% elif new_user %}
+  <div class="w-full flex flex-wrap">
+    {# new user #}    
+      {% include 'main-html/components/new_tenant.html' %}    
+    {# new user #}
+  </div>
+  {% else %}
+  <div class="w-full">
+    {# renter view #}
+    {% include 'main-html/components/renter_view.html' %}
+    {# renter view #}
+  </div>
+  {% endif %}
+  <div class="pb-24 h-18 w-full">
+    <span class="text-transparent">spacer</span>
+  </div>
+</div>
+{% endblock%}

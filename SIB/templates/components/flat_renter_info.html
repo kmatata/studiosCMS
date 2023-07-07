@@ -1,0 +1,62 @@
+<div class="z-10 card card-compact flex flex-col z-20">              
+    
+    <div x-ref="tenantform" class="card-body w-full">
+      <h2 class="text-xl">{{ flat.tenant }} @Flat No{{ flat.flat }}</h2>
+      <div style="border-top-width: 2px;border-color: rgb(154, 145, 145); border-radius: 0px;" class="w-full p-2 md:p-0  my-[5px]"></div>      
+      <form action="" class="md:p-5 flex w-full flex-wrap">                
+        <div id="National ID" class="form-control w-1/2 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">National ID</span>
+          </label> 
+          <input x-mask="99999999" x-model="flat_details.nat_id" type="text" placeholder="Type here" class="input input-sm input-bordered w-full max-w-xs" />                                                                     
+        </div> 
+        <div id="Mobile No" class="form-control w-1/2 p-2">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">Mobile No</span>
+          </label> 
+            <input x-mask="999 9999 99999" x-model="flat_details.cell_nos"             
+            type="text" placeholder="Type here" 
+            class="input input-sm input-bordered w-full max-w-xs" />                                                                     
+        </div>
+        <div id="National-ID-Image" class="space-y-2 form-control w-full p-2" 
+            x-data="{ imageSrc:'' }"            
+            x-init="imageSrc = flat_details.renter_natId_image">
+          <label class="label text-xs text-white">
+            <span class="label-text-alt">National ID Image</span>
+          </label> 
+          <input id="natId-file" type="file" @change="handleFileSelect" accept="image/*"          
+          class="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs" />
+          <template x-if="imageSrc !== ''">
+            <div class="border-2 border-white rounded-md shadow-md">
+              <img class="p-1" :src="imageSrc" alt="Selected Image" />
+            </div>
+          </template>
+        </div> 
+        <div id="Tax-info-Image" class="space-y-2 form-control w-full p-2" 
+            x-data="{ imageSrc:'' }"
+            x-init="imageSrc = flat_details.renter_taxInfo_image">
+            <label class="label text-xs text-white">
+                <span class="label-text-alt">Tax-info Image</span>
+            </label> 
+            <input id="tax-file" type="file" @change="handleFileSelect2" accept="image/*"                         
+            class="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs" />
+            <template x-if="imageSrc !== ''">
+                <div class="border-2 border-white rounded-md shadow-md">
+                <img class="p-1" :src="imageSrc" alt="Selected Image" />
+                </div>
+            </template>
+        </div>                            
+        <div class="form-control mt-6 w-full">                  
+          <button @click.prevent="uploadImage($data)" type="submit" class="text-black hover:text-white tracking-widest btn bg-white btn-xs sm:btn-sm shadow-2xl shadow-black rounded-full">
+            update
+          </button>
+        </div>              
+      </form>
+      
+      <div @click="remove_tenants($data);$refs.tenantform.classList.add('hidden')" class="w-full p-2 btn btn-sm btn-rounded border-2 border-white shadow-xl btn-error bg-red-800/90 text-white">
+        <p class="leading-4 text-center tracking-widest text-lg">Remove Tenant</p>
+      </div>
+        
+      
+    </div>
+  </div>

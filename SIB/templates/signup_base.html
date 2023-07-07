@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" class="bg-gradient-to-l from-sky-500 from-10% via-indigo-500 via-20% to-emerald-500 to-90% min-h-screen">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}sign up{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script
+        defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js">
+    </script>
+			
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" type="text/css"/>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Dela+Gothic+One:400,700&display=swap');
+
+            .font-family-karla {
+                font-family: karla;
+            } 
+            #logo {
+                font-family: Dela Gothic One;
+            }          
+    </style>
+
+</head>
+<body class="overflow-x-hidden scrollbar rounded-3xl font-family-karla">
+    {% block content %}{% endblock %} 
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('modal', () => ({
+                open: true,            
+                toggle() {
+                    this.open = true
+                },
+                close() {
+                    this.open = false
+                }
+            }))
+        })
+    </script>
+</body>
+</html>
